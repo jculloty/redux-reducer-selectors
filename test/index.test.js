@@ -46,6 +46,24 @@ describe('Combine Reducer, Map Selectors', () => {
     expect(selectors.getB(state)).toBe('B');
   });
 
+  it('Handles selector parameters', () => {
+    const map = {
+      default: (state = { a: 'A', b: 'B' }) => state,
+      getProp: (state, prop) => state[prop],
+    };
+
+    const { rootReducer, selectors } = combineReducerMapSelectors({
+      map,
+    });
+
+    const state = rootReducer();
+
+    expect(typeof selectors.getProp).toBe('function');
+
+    expect(selectors.getProp(state, 'a')).toBe('A');
+    expect(selectors.getProp(state, 'b')).toBe('B');
+  });
+
   it('Throws an error if the default reducer is missing', () => {
     const mapA = {
       getA: (state) => state.a,
