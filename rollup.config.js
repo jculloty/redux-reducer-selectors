@@ -11,14 +11,14 @@ const config = {
 
 if (env === 'es' || env === 'cjs') {
   config.output = { format: env };
-  config.external = ['symbol-observable'];
+  config.external = ['redux'];
   config.plugins.push(babel({
     plugins: ['external-helpers'],
   }));
 }
 
 if (env === 'development' || env === 'production') {
-  config.output = { format: 'umd', name: 'Redux' };
+  config.output = { format: 'umd', name: 'ReduxReducerSelector' };
   config.plugins.push(
     nodeResolve({
       jsnext: true,
