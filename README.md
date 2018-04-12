@@ -1,5 +1,5 @@
 # redux-reducer-selectors
-[![npm package][npm-badge]][npm]
+[![NPM](https://nodei.co/npm/redux-reducer-selectors.png)](https://npmjs.org/package/redux-reducer-selectors)
 
 A tool for reducing boilerplate by automatically mapping selectors in the rootReducer
 ## Selectors
