@@ -4,7 +4,7 @@
   "main": "lib/index.js",
   "module": "es/index.js",
   "author": "John Culloty",
-  "description": "A tool for reducing boilerplate by automatically map selectors in the rootReducer",
+  "description": "A tool for reducing boilerplate by automatically mapping selectors in the rootReducer",
   "repository": {
     "type": "git",
     "url": "https://github.com/jculloty/redux-reducer-selectors.git"
