@@ -24,8 +24,13 @@
   },
   "scripts": {
     "test": "jest"
+    "test": "jest",
+    "test:cov": "npm test -- --coverage"
   },
   "dependencies": {
     "redux": "^3.7.2"
+  },
+  "jest": {
+    "testRegex": "(/test/.*\\.test.js)$"
   }
 }
