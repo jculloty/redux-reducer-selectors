@@ -4,6 +4,9 @@ node_js:
 install:
   - npm i -g npm@5.8.0
   - npm ci
+cache:
+  directories:
+    - "node_modules"
 deploy:
   provider: npm
   email: jculloty@gmail.com
