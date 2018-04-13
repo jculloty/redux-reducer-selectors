@@ -1,6 +1,6 @@
 {
   "name": "redux-reducer-selectors",
-  "version": "0.0.8",
+  "version": "1.0.0",
   "main": "lib/index.js",
   "module": "es/index.js",
   "author": "John Culloty",
