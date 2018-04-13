@@ -5,6 +5,7 @@ redux-reducer-selectors wraps Redux's **combineReducers()** method to map each r
 
 - The individual reducer files remain unaltered
 -- Provided the reducer is the default export and the selectors are named exports (standard practice)
+- Works with [Reselect](https://github.com/reactjs/reselect.git)
 - The entire module's contents are imported for each reducer
 - All selectors are exported as a single Selectors object
 

@@ -1,3 +1,4 @@
+import { createSelector } from 'reselect';
 import combineReducerMapSelectors from '../src/index';
 
 describe('Combine Reducer, Map Selectors', () => {
@@ -79,6 +80,54 @@ describe('Combine Reducer, Map Selectors', () => {
 
     expect(Object.keys(selectors).length).toBe(2);
   });
+
+  it('Works with reselect', () => {
+    let innerCalls = 0;
+    const map = {
+      default: (state = { a: 1, b: 2 }, action) => {
+        switch (action) {
+          case 'incA':
+            return { ...state, a: state.a + 1 };
+          case 'incB':
+            return { ...state, b: state.b + 1 };
+        }
+        return state;
+      },
+      getTotal: createSelector(
+        [
+          (state) => state.a,
+          (state) => state.b,
+        ],
+        (a, b) => {
+          innerCalls++;
+          return a + b;
+        }
+      ),
+    };
+
+    const { rootReducer, selectors } = combineReducerMapSelectors({
+      map,
+    });
+
+    let state = rootReducer();
+
+    expect(typeof selectors.getTotal).toBe('function');
+
+    expect(selectors.getTotal(state)).toBe(3);
+    expect(selectors.getTotal(state)).toBe(3);
+    expect(innerCalls).toBe(1);
+
+    state = rootReducer(state, 'incA');
+    expect(selectors.getTotal(state)).toBe(4);
+    expect(selectors.getTotal(state)).toBe(4);
+    expect(innerCalls).toBe(2);
+
+    state = rootReducer(state, 'incB');
+    expect(selectors.getTotal(state)).toBe(5);
+    expect(selectors.getTotal(state)).toBe(5);
+    expect(innerCalls).toBe(3);
+  });
+
   it('Throws an error if the default reducer is missing', () => {
     const mapA = {
       getA: (state) => state.a,
