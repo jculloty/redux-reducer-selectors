@@ -64,6 +64,21 @@ describe('Combine Reducer, Map Selectors', () => {
     expect(selectors.getProp(state, 'b')).toBe('B');
   });
 
+  it('Only named functional exports are included in the Selectors object', () => {
+    const initialState = { a: 1, b: 2 };
+    const map = {
+      initialState,
+      default: (state = initialState) => state,
+      getA: (state) => state.a,
+      getB: (state) => state.b,
+    };
+
+    const { selectors } = combineReducerMapSelectors({
+      map,
+    });
+
+    expect(Object.keys(selectors).length).toBe(2);
+  });
   it('Throws an error if the default reducer is missing', () => {
     const mapA = {
       getA: (state) => state.a,
