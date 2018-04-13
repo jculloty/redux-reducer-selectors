@@ -1,6 +1,9 @@
 # redux-reducer-selectors
 ---
-[![NPM](https://nodei.co/npm/redux-reducer-selectors.png)](https://npmjs.org/package/redux-reducer-selectors)
+[![build status](https://img.shields.io/travis/jculloty/redux-reducer-selectors.svg)](https://travis-ci.org/jculloty/redux-reducer-selectors)
+[![npm version](https://img.shields.io/npm/v/redux-reducer-selectors.svg)](https://www.npmjs.com/package/redux-reducer-selectors)
+[![npm dowbloads](https://img.shields.io/npm/dw/redux-reducer-selectors.svg)](https://www.npmjs.com/package/redux-reducer-selectors)
+[![Coverage Status](https://img.shields.io/codecov/c/github/jculloty/redux-reducer-selectors/master.svg)](https://codecov.io/gh/jculloty/redux-reducer-selectors)
 ---
 #### Automatically maps Redux selectors to the rootReducer when combining reducers.
 redux-reducer-selectors wraps Redux's **combineReducers()** method to map each reducer's selectors to the correct state slice of the root reducer.
