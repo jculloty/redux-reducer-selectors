@@ -1,5 +1,7 @@
 # redux-reducer-selectors
 ---
+[![NPM](https://nodei.co/npm/redux-reducer-selectors.png)](https://npmjs.org/package/redux-reducer-selectors)
+---
 #### Automatically maps Redux selectors to the rootReducer when combining reducers.
 redux-reducer-selectors wraps Redux's **combineReducers()** method to map each reducer's selectors to the correct state slice of the root reducer.
 
@@ -24,7 +26,6 @@ export default rootReducer
 export { selectors as Selectors }
 ```
 ---
-[![NPM](https://nodei.co/npm/redux-reducer-selectors.png)](https://npmjs.org/package/redux-reducer-selectors)
 
 ## Motivation
 > A Selector is a store getter in Redux.
