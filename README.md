@@ -1,13 +1,36 @@
 # redux-reducer-selectors
+---
+#### Automatically maps Redux selectors to the rootReducer when combining reducers.
+redux-reducer-selectors wraps Redux's **combineReducers()** method to map each reducer's selectors to the correct state slice of the root reducer.
+
+- The individual reducer files remain unaltered
+-- Provided the reducer is the default export and the selectors are named exports (standard practice)
+- The entire module's contents are imported for each reducer
+- All selectors are exported as a single Selectors object
+
+#### Example
+```javascript
+import combineReducerMapSelectors from 'redux-reducer-selectors'
+import * as todos from './todos'
+import * as counter from './counter'
+
+const { rootReducer, selectors } = combineReducerMapSelectors({
+  todos,
+  counter
+})
+
+export default rootReducer
+export { selectors as Selectors }
+```
+---
 [![NPM](https://nodei.co/npm/redux-reducer-selectors.png)](https://npmjs.org/package/redux-reducer-selectors)
 
-A tool for reducing boilerplate by automatically mapping selectors in the rootReducer
-## Selectors
+## Motivation
 > A Selector is a store getter in Redux.
 
 Instead of directly accessing the store's state; selectors should be used to allow for easier refactoring and to ensure that the rest of the application is not tied to the store's internal state.
 
-### reducers/todos.js
+#### reducers/todos.js
 ```javascript
 // The reducer is usually the default export
 export default function todos(state = [], action) {
@@ -25,7 +48,7 @@ export getTodoCount = (state) => state.length
 export getFirstTodo = (state) => state[0]
 export getTodo = (state, index) => state[index]
 ```
-### reducers/counter.js
+#### reducers/counter.js
 ```javascript
 // The reducer is usually the default export
 export default function counter(state = 0, action) {
@@ -56,7 +79,7 @@ const mapStateToProps = (state) => ({
 ```
 One problem with this method is that the value of state used by **mapStateToProps()** is the combined state of the rootReducer.
 
-### reducers/index.js
+#### reducers/index.js
 ```javascript
 import { combineReducers } from 'redux'
 import todos from './todos'
@@ -80,7 +103,7 @@ const mapStateToProps = (state) => ({
 ```
 Meaning that the application needs to know about the store's structure, in order to pass the correct slice to the selectors. To avoid this problem it is generally recommended to perform this slice mapping in the root reducer.
 
-### reducers/index.js
+#### reducers/index.js
 ```javascript
 import { combineReducers } from 'redux'
 import todos, { getTodos, getTodoCount, getFirstTodo, getTodo } from './todos'
@@ -110,7 +133,7 @@ const mapStateToProps = (state) => ({
 ```
 However this comes at at cost of additional boilerplate in the root reducer. This package aims automatically map selectors when combining reducers. The individual reduce files do not need to be changed simply import the entire module for each reducer and pass this to the new **combineReducerMapSelectors()** method.
 
-### reducers/index.js
+#### reducers/index.js
 ```javascript
 import combineReducerMapSelectors from 'redux-reducer-selectors'
 import * as todos from './todos'
