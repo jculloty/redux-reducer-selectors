@@ -49,6 +49,8 @@
     "redux": "^3.7.2"
   },
   "jest": {
+    "coverageDirectory": "./coverage/",
+    "collectCoverage": true,
     "testRegex": "(/test/.*\\.test.js)$"
   }
 }
