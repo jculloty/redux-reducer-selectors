@@ -25,6 +25,7 @@
     "codecov.io": "^0.1.6",
     "coveralls": "^3.0.1",
     "cross-env": "^5.1.4",
+    "husky": "^1.0.0-rc.3",
     "jest": "^22.4.3",
     "reselect": "^3.0.1",
     "rimraf": "^2.6.2",
@@ -33,6 +34,12 @@
     "rollup-plugin-node-resolve": "^3.3.0",
     "rollup-plugin-replace": "^2.0.0",
     "rollup-plugin-uglify": "^3.0.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm test",
+      "pre-push": "npm test"
+    }
   },
   "scripts": {
     "clean": "rimraf lib dist es coverage",
